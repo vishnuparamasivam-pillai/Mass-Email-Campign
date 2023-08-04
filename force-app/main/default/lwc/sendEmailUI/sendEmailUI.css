@@ -1,0 +1,23 @@
+.frame{
+    border-radius: 8px;
+    background: ghostwhite;
+    padding: 10px;
+    width: 100%;
+    height: max-content;
+}
+.header{
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.75em;
+    width: 100%;
+    height: 10%;
+}
+.blank{
+    height: 10px;
+}
+.buttonrt{
+    float: right;
+}

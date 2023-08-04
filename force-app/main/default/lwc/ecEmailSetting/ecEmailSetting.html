@@ -1,0 +1,87 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- modal header start -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBoxClose}>
+                    <lightning-icon icon-name="utility:close"
+                    alternative-text="close"
+                    variant="inverse"
+                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Email Composer Setting
+                    <span dir="rtl">
+                        <span class="slds-form-element">
+                        <label class="slds-checkbox_toggle slds-grid">
+                        <span class="slds-form-element__label slds-m-bottom_none">Use Filter</span>
+                        <input type="checkbox" name="checkbox-toggle-23" value="checkbox-toggle-23" aria-describedby="checkbox-toggle-23"  onclick={handlefiltertoggle} checked="" />
+                        <span id="checkbox-toggle-23" class="slds-checkbox_faux_container" aria-live="assertive">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-checkbox_on">Enabled</span>
+                        <span class="slds-checkbox_off">Disabled</span>
+                        </span>
+                        </label>
+                        </span>
+                        </span>
+                </h2>
+            </header>
+        
+            <!-- modal body start -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" if:true={istoggleon}>
+                <div>
+                    <lightning-combobox name="To Obj Filter" label="TO Obj Filter" placeholder="Select Object" options={objOptions} onchange={handleobjChange}></lightning-combobox>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <lightning-combobox name="To Field Filter" label="TO Field Filter" placeholder="Select Field" options={fdlOptions} onchange={handlefldChange}></lightning-combobox>
+                            </td>
+                            <td></td>
+                            <td>
+                                <lightning-combobox name="Comparitor" label="Comparitor" placeholder="Select Criteria" options={comparitorOptions}></lightning-combobox>  
+                            </td>
+                            <td></td>
+                            <td>
+                                <lightning-combobox name="Actual Options" label="Options" placeholder="Select Option" options={valOptions}></lightning-combobox>  
+                            </td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
+
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2" if:false={istoggleon}>
+                <div>
+                    <lightning-combobox name="To Obj Filter" label="TO Obj Filter" placeholder="Select Object" options={objOptions} onchange={handleobjChange} read-only="false"></lightning-combobox>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <lightning-combobox name="To Field Filter" label="TO Field Filter" placeholder="Select Field" options={fdlOptions} onchange={handlefldChange} read-only="false"></lightning-combobox>
+                            </td>
+                            <td></td>
+                            <td>
+                                <lightning-combobox name="Comparitor" label="Comparitor" placeholder="Select Criteria" options={comparitorOptions} read-only="false"></lightning-combobox>  
+                            </td>
+                            <td></td>
+                            <td>
+                                <lightning-combobox name="Actual Options" label="Options" placeholder="Select Option" options={valOptions} read-only="false"></lightning-combobox>  
+                            </td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
+
+            <!-- modal footer start-->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_text-destructive" onclick={hideModalBoxClose}>Cancel</button>
+                <button class="slds-button slds-button_brand" onclick={hideModalBoxSave}>Save</button>
+            </footer>
+        
+        </div>
+    </section>
+      <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+</template>

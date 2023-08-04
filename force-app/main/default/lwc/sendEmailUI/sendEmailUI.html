@@ -1,0 +1,83 @@
+<template>
+    <div class="header">
+        <h1>Mass Email Campaign</h1>
+        <h2>Setting</h2>
+    </div>
+
+    <div class="blank"></div>
+
+    <div class="frame" if:false={issend}>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <lightning-input type="text" id="TO" label="TO" value={to} onchange={handleTochange}></lightning-input>
+                    </td>
+                    <td>
+                        <lightning-combobox name="To Obj Filter" label="TO Obj Filter" placeholder="Select Criteria" options={objOptions} onchange={handleobjChange}></lightning-combobox>
+                    </td>
+                    <td>
+                        <lightning-combobox name="To Field Filter" label="TO Field Filter" placeholder="Select Criteria" options={fdlOptions}></lightning-combobox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="CC" value={cc} onchange={handleCCchange}></lightning-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="Subject" value={subject} onchange={handleSubjectchange}></lightning-input>
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td>
+                        <lightning-input-rich-text label ='Body' placeholder="Campaign Email Body" value={body} onchange={handleBodychange}></lightning-input-rich-text>
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td class="buttonrt">
+                        <c-EC-Email-Backend emaildata={emaildata}></c-EC-Email-Backend>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="frame" if:true={issend}>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="TO" value={to} disabled></lightning-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="CC" value={cc} disabled></lightning-input> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="Subject" value={subject} disabled></lightning-input>
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td>
+                        <lightning-input-rich-text label ='Body' placeholder="Campaign Email Body" value={body} disabled></lightning-input-rich-text> 
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td class="buttonrt">
+                        <lightning-button label="Send Again" onclick={handleAgain}></lightning-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</template>

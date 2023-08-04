@@ -1,0 +1,97 @@
+<!--
+* Author:- Vishnu Pillai(©vishnuvpinfo@gmail.com)
+ * Description:- This LWC interacts with user to get data and pass it to backend LWC.
+-->
+<template>
+    <div class="header">
+        <table>
+            <tr>
+                <td align="left" class ="images">
+                    <img align="left" src={logo} alt="Logo">
+                </td>
+                <td align="middle">
+                    <h1 align="middle">Email Composer</h1>
+                </td>
+                <td align="right" class ="images">
+                    <img align="right" src={setting} alt="Setting" onclick={handlesetting}>
+                    <div if:true={issettingopen}>
+                        <section role="dialog" tabindex="-1" aria-modal="false" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+                            <c-ec-email-setting onmodclose={handlemodelclose} onmodsave={handlemodelsave}></c-ec-email-setting>
+                        </section>  
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="blank"></div>
+
+    <div class="frame" if:false={issend}>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <lightning-input type="text" id="TO" label="TO" value={to} onchange={handleTochange}></lightning-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="CC" value={cc} onchange={handleCCchange}></lightning-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="Subject" value={subject} onchange={handleSubjectchange}></lightning-input>
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td>
+                        <lightning-input-rich-text label ='Body' placeholder="Campaign Email Body" value={body} onchange={handleBodychange}></lightning-input-rich-text>
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td class="buttonrt">
+                        <c-EC-Email-Backend eidata={emaildata}  oninserror={handleError} oninssuccess={handleSuccess} oninwarning={handleWarning}></c-EC-Email-Backend>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="frame" if:true={issend}>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="TO" value={to} disabled></lightning-input>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="CC" value={cc} disabled></lightning-input> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <lightning-input type="text" label="Subject" value={subject} disabled></lightning-input>
+                    </td>
+                </tr>
+                <tr class="blank"><!-- Author:- Vishnu Pillai(©vishnuvpinfo@gmail.com) --></tr>
+                <tr>
+                    <td>
+                        <lightning-input-rich-text label ='Body' placeholder="Campaign Email Body" value={body} disabled></lightning-input-rich-text> 
+                    </td>
+                </tr>
+                <tr class="blank"></tr>
+                <tr>
+                    <td class="buttonrt">
+                        <lightning-button label="Send Again" onclick={handleAgain}></lightning-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</template>
